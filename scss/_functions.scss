@@ -1,0 +1,38 @@
+@use 'sass:math';
+@use 'sass:meta';
+
+@function calculate($num1, $num2, $operator) {
+    @if type-of($num1)=='number' and type-of($num2)=='number' {
+        @if unitless($num1) and unitless($num2) {
+            @if index('m' 'dz' 'd' 'o', $operator) {
+                @if $operator =='m' {
+                    @return $num1 * $num2 * 1px;
+                }
+
+                @else if $operator =='dz' {
+                    @return math.div($num1, $num2) * 1px;
+                }
+
+                @else if $operator =='d' {
+                    @return $num1 +$num2 * 1px;
+                }
+
+                @else if $operator =='o' {
+                    @return $num1 - $num2 * 1px;
+                }
+            }
+
+            @else {
+                @error 'Błąd ! Zmienna ($operator) powinna zawierać: m (mnożenie), dz (dzielenie), d (dodawanie), o (odejmowanie)'
+            }
+        }
+
+        @else {
+            @error 'Błąd ! Zmienna ($num1) i ($num2) nie może zawierać jednostki'
+        }
+    }
+
+    @else {
+        @error 'Błąd ! Zmienna ($num1) lub ($num2) musi być typu liczbowego'
+    }
+}

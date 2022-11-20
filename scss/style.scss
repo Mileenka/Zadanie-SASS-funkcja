@@ -1,0 +1,6 @@
+@use 'functions' as *;
+
+div {
+    width: calculate(200, 10, 'dz');
+    height: calculate(20, 40, 'd');
+}
