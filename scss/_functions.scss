@@ -23,16 +23,16 @@
             }
 
             @else {
-                @error 'Błąd ! Zmienna ($operator) powinna zawierać: m (mnożenie), dz (dzielenie), d (dodawanie), o (odejmowanie)'
+                @error 'Błąd ! Zmienna ($operator) powinna zawierać: m (mnożenie), dz (dzielenie), d (dodawanie), o (odejmowanie)';
             }
         }
 
         @else {
-            @error 'Błąd ! Zmienna ($num1) i ($num2) nie może zawierać jednostki'
+            @error 'Błąd ! Zmienna ($num1) i ($num2) nie może zawierać jednostki';
         }
     }
 
     @else {
-        @error 'Błąd ! Zmienna ($num1) lub ($num2) musi być typu liczbowego'
+        @error 'Błąd ! Zmienna ($num1) lub ($num2) musi być typu liczbowego';
     }
 }
