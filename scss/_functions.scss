@@ -1,29 +1,33 @@
-@use 'sass:math';
+@use "sass:math";
 @use 'sass:meta';
+@use "sass:list";
+
 
 @function calculate($num1, $num2, $operator) {
-    @if type-of($num1)=='number' and type-of($num2)=='number' {
-        @if unitless($num1) and unitless($num2) {
-            @if index('m' 'dz' 'd' 'o', $operator) {
-                @if $operator =='m' {
-                    @return $num1 * $num2 * 1px;
+    @if meta.type-of($num1) =='number' and meta.type-of($num2) == 'number' {
+        @if math.is-unitless($num1) and math.is-unitless($num2) {
+            @if list.index('d' 'o' 'm' 'dz', $operator) {
+                @if $operator == 'd' {
+                    $operator: (($num1 + $num2) * 1px);
                 }
 
-                @else if $operator =='dz' {
-                    @return math.div($num1, $num2) * 1px;
+                @else if $operator == 'o' {
+                    $operator: (($num1 - $num2) * 1px);
                 }
 
-                @else if $operator =='d' {
-                    @return $num1 +$num2 * 1px;
+                @else if $operator == 'm' {
+                    $operator: (($num1 * $num2) * 1px);
                 }
 
-                @else if $operator =='o' {
-                    @return $num1 - $num2 * 1px;
+                @else {
+                    $operator: (math.div($num1, $num2) * 1px);
                 }
+
+                @return $operator;
             }
 
             @else {
-                @error 'Błąd ! Zmienna ($operator) powinna zawierać: m (mnożenie), dz (dzielenie), d (dodawanie), o (odejmowanie)';
+                @error 'Błąd ! Zmienna ($operator) powinna zawierać: d (dodawanie), o (odejmowanie), m (mnożenie), dz (dzielenie)';
             }
         }
 

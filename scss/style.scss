@@ -1,6 +1,8 @@
 @use 'functions' as *;
 
 div {
-    width: calculate(200, 10, 'dz');
-    height: calculate(20, 40, 'd');
+    width: calculate(20, 20, 'm');
+    height: calculate(40, 10, 'd');
+    margin: calculate(10, 8, 'o');
+    border-bottom: calculate(20, 20, 'dz');
 }
